@@ -64,5 +64,4 @@ jobs:
         if: ${{ always() }}
         shell: pwsh
         run: |
-          # Provide a PowerShell script that will shutdown/clean up any dependent infrastructure that has been set up.
-          # Any output parameters specified in the setup stage can be accessed by using {{steps.setup-infrastructure.outputs.key}}
+          mongo --eval "db.getSiblingDB('admin').shutdownServer()
