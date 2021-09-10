@@ -35,7 +35,7 @@ jobs:
         #mongod --dbpath /temp/mongodb --replSet tr0 --bind_ip 127.0.0.1 
         Start-Sleep -s 5
         mongo --eval 'rs.initiate()'
-        mongo --eval 'ts.status()'
+        mongo --eval 'rs.status()'
     - name: Test-connection
       shell: pwsh
       run: mongo --eval 'ts.status()'
