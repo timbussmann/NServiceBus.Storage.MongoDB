@@ -22,8 +22,9 @@ jobs:
     - name: Shutdown-mongo
       shell: pwsh
       run: |
-          mongo --eval "db.getSiblingDB('admin').shutdownServer()"
-          Start-Sleep -s 10
+          #mongo --eval "db.getSiblingDB('admin').shutdownServer()"
+          Stop-Service -Name "MongoDB"
+          Start-Sleep -s 5
     - name: List services2
       shell: pwsh
       run: net start    
@@ -31,7 +32,7 @@ jobs:
       shell: pwsh
       run: |
         mkdir /temp/mongodb
-        Start-Job -ScriptBlock { mongod --dbpath /temp/mongodb --replSet tr0 --bind_ip 127.0.0.1 }
+        Start-Process mongod -ArgumentList "--dbpath /temp/mongodb --replSet tr0 --bind_ip 127.0.0.1" -WindowStyle Hidden
         #mongod --dbpath /temp/mongodb --replSet tr0 --bind_ip 127.0.0.1 
         Start-Sleep -s 5
         mongo --eval 'rs.initiate()'
