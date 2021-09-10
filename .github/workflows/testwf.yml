@@ -38,7 +38,7 @@ jobs:
         mongo --eval 'rs.status()'
     - name: Test-connection
       shell: pwsh
-      run: mongo --eval 'ts.status()'
+      run: mongo --eval 'rs.status()'
 
       
       
