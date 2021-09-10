@@ -18,5 +18,6 @@ jobs:
         shell: pwsh
         run: |
           mkdir /temp/mongodb
-          mongod --dbpath /temp/mongodb --replSet tr0
+          Start-Job mongod --dbpath /temp/mongodb --replSet tr0
+          mongo --eval 'rs.initiate()'
       
