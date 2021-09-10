@@ -18,6 +18,7 @@ jobs:
         shell: pwsh
         run: |
           mkdir /temp/mongodb
-          Start-Job mongod --dbpath /temp/mongodb --replSet tr0
+          Start-Job -ScriptBlock { mongod --dbpath /temp/mongodb --replSet tr0 }
+          Start-Sleep -s 5
           mongo --eval 'rs.initiate()'
       
