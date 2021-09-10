@@ -47,11 +47,13 @@ jobs:
       - name: Build
         run: dotnet build src --configuration Release
       - name: Stop built-in MongoDB server
+        if: matrix.name == 'Windows'
         shell: pwsh
         run:  |
           Stop-Service -Name "MongoDB"
           Start-Sleep -s 5
       - name: Setup MongoDB server
+        if: matrix.name == 'Windows'
         shell: pwsh
         run: |
           mkdir /temp/mongodb
