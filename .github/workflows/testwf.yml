@@ -1,0 +1,21 @@
+# This is a basic workflow that is manually triggered
+
+name: test
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+
+env:
+  DOTNET_NOLOGO: true
+jobs:
+  build:
+    name: test-job
+    runs-on: windows-2019
+    steps:
+      - name: Setup-mongo
+        shell: pwsh
+        run: |
+          mongod --replSet tr0
+      
