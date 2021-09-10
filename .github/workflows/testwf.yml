@@ -15,19 +15,19 @@ jobs:
     runs-on: windows-2019
     steps:
     - name: Shutdown-mongo
-        shell: pwsh
-        run: |
+      shell: pwsh
+      run: |
           mongo --eval 'use admin; db.shutdownServer()'
-      - name: Setup-mongo
-        shell: pwsh
-        run: |
-          mkdir /temp/mongodb
-          #Start-Job -ScriptBlock { mongod --dbpath /temp/mongodb --replSet tr0 --bind_ip 127.0.0.1 }
-          mongod --dbpath /temp/mongodb --replSet tr0 --bind_ip 127.0.0.1 
-          Start-Sleep -s 5
-          mongo --eval 'rs.initiate()'
-      - name: Test-connection
-        shell: pwsh
-        run: mongo --eval 'exit'
+    - name: Setup-mongo
+      shell: pwsh
+      run: |
+        mkdir /temp/mongodb
+        #Start-Job -ScriptBlock { mongod --dbpath /temp/mongodb --replSet tr0 --bind_ip 127.0.0.1 }
+        mongod --dbpath /temp/mongodb --replSet tr0 --bind_ip 127.0.0.1 
+        Start-Sleep -s 5
+        mongo --eval 'rs.initiate()'
+    - name: Test-connection
+      shell: pwsh
+      run: mongo --eval 'exit'
       
       
