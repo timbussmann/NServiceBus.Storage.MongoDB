@@ -17,5 +17,6 @@ jobs:
       - name: Setup-mongo
         shell: pwsh
         run: |
-          mongod --replSet tr0
+          mkdir /temp/mongodb
+          mongod --dbpath /temp/mongodb --replSet tr0
       
