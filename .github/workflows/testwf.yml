@@ -17,7 +17,7 @@ jobs:
     - name: Shutdown-mongo
       shell: pwsh
       run: |
-          mongo --eval 'use admin; db.shutdownServer()'
+          mongo --eval "db.getSiblingDB('admin').shutdownServer()"
     - name: Setup-mongo
       shell: pwsh
       run: |
