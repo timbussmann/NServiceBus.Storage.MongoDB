@@ -14,10 +14,7 @@ jobs:
     name: test-job
     runs-on: windows-2019
     steps:
-    - name: Shutdown-mongo
-      shell: pwsh
-      run: |
-          mongo --eval "db.getSiblingDB('admin').shutdownServer()"
+
     - name: Setup-mongo
       shell: pwsh
       run: |
@@ -29,5 +26,9 @@ jobs:
     - name: Test-connection
       shell: pwsh
       run: mongo --eval 'exit'
+    - name: Shutdown-mongo
+      shell: pwsh
+      run: |
+          mongo --eval "db.getSiblingDB('admin').shutdownServer()"
       
       
